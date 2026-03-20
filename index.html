@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tópicos Avançados em Inteligência Artificial A | Prof. Dr. Thommas K. S. Flores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0b0f1a;
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --accent-color: #38bdf8;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --sidebar-bg: rgba(15, 23, 42, 0.8);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            padding: 40px 20px 80px;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: var(--sidebar-bg);
+            padding: 12px;
+            border-radius: 30px;
+        }
+
+        .sidebar a {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .author-box {
+            margin-top: 20px;
+        }
+
+        .course-details {
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .course-details h2 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .course-details ul {
+            list-style: none;
+        }
+
+        .course-details li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        #searchBar {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .card-title { font-weight: 600; }
+        .card-desc { color: var(--text-secondary); }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Tópicos Avançados em Inteligência Artificial A</h1>
+    <div class="author-box">
+        <p>Prof. Dr. Thommas K. S. Flores</p>
+        <p>UFRN - CERES - DCT</p>
+    </div>
+</header>
+
+<section class="course-details">
+    <div class="two-columns">
+
+        <div>
+            <h2>Objetivo Geral</h2>
+            <ul>
+                <li>Capacitar os alunos a desenvolver e implantar sistemas modernos de IA, incluindo LLMs, RAG, agentes e Edge AI.</li>
+            </ul>
+
+            <h2>Objetivos Específicos</h2>
+            <ul>
+                <li>Utilizar GitHub e ambientes virtuais</li>
+                <li>Realizar análise de dados</li>
+                <li>Aplicar Feature Engineering</li>
+                <li>Compreender Machine Learning</li>
+                <li>Aplicar LLMs e fine-tuning</li>
+                <li>Desenvolver RAG</li>
+                <li>Construir agentes inteligentes</li>
+                <li>Aplicar MLOps</li>
+                <li>Desenvolver soluções Edge AI</li>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Conteúdo</h2>
+            <ul>
+                <li>Data Science e Estatística</li>
+                <li>Feature Engineering</li>
+                <li>Machine Learning</li>
+                <li>LLMs</li>
+                <li>Fine-tuning</li>
+                <li>RAG</li>
+                <li>Agentes</li>
+                <li>MLOps</li>
+                <li>Edge AI</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<div class="search-container">
+    <input type="text" id="searchBar" placeholder="Pesquisar aula..." onkeyup="filterCards()">
+</div>
+
+<div class="container" id="cardContainer"></div>
+
+<script>
+
+const aulas = [
+
+{ id:"Aula 01", name:"Introdução (17/03)", desc:"Visão geral, GitHub e ambientes virtuais", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 02", name:"Python e Dados (24/03)", desc:"NumPy e Pandas", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 03", name:"Estatística (31/03)", desc:"Distribuições e correlação", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 04", name:"EDA (07/04)", desc:"Visualização de dados", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 05", name:"Pré-processamento (14/04)", desc:"Limpeza e encoding", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 06", name:"Feature Engineering (28/04)", desc:"Seleção e normalização", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 07", name:"Machine Learning (05/05)", desc:"Introdução e regressão", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 08", name:"Classificação (12/05)", desc:"KNN, SVM e árvores", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 09", name:"Avaliação (19/05)", desc:"Métricas e validação", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 10", name:"LLMs (26/05)", desc:"Transformers e embeddings", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 11", name:"Prompt Engineering (02/06)", desc:"Uso de LLMs", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 12", name:"Fine-tuning (09/06)", desc:"Adaptação de modelos", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 13", name:"RAG (16/06)", desc:"Busca vetorial", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 14", name:"RAG Prático (23/06)", desc:"Implementação", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 15", name:"Agentes (30/06)", desc:"Sistemas inteligentes", slideUrl:"#", videoUrl:"#"},
+{ id:"Aula 16", name:"MLOps e Edge AI (07/07)", desc:"Deploy e IoT", slideUrl:"#", videoUrl:"#"}
+
+];
+
+function displayCards(data){
+    const container = document.getElementById('cardContainer');
+    container.innerHTML="";
+    data.forEach(a=>{
+        container.innerHTML+=`
+        <div class="card">
+            <div class="card-title">${a.id} - ${a.name}</div>
+            <div class="card-desc">${a.desc}</div>
+        </div>`;
+    });
+}
+
+function filterCards(){
+    const q=document.getElementById('searchBar').value.toLowerCase();
+    displayCards(aulas.filter(a=>a.name.toLowerCase().includes(q)));
+}
+
+displayCards(aulas);
+
+</script>
+
+</body>
+</html>
