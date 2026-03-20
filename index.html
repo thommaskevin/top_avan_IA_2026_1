@@ -6,7 +6,6 @@
     <title>Tópicos Avançados em Inteligência Artificial A | Prof. Dr. Thommas K. S. Flores</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         :root {
             --bg-color: #0b0f1a;
@@ -18,15 +17,26 @@
             --border-color: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.08) 0%, transparent 50%);
             color: var(--text-primary);
             padding: 40px 20px 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
+        /* --- Social Sidebar --- */
         .sidebar {
             position: fixed;
             left: 20px;
@@ -38,11 +48,29 @@
             background: var(--sidebar-bg);
             padding: 12px;
             border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            z-index: 100;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .sidebar a {
             color: var(--text-secondary);
             font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            color: var(--accent-color);
+            background: rgba(56, 189, 248, 0.1);
+            transform: scale(1.1);
         }
 
         header {
@@ -50,24 +78,108 @@
             margin-bottom: 40px;
         }
 
+        .uni-tag {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 600;
+        }
+
         header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
             background: linear-gradient(90deg, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        /* --- Profile Box --- */
         .author-box {
-            margin-top: 20px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 25px 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
+            margin-bottom: 30px;
         }
 
+        .author-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .author-info {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .author-email {
+            margin-top: 12px;
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .author-email:hover {
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+        }
+
+        /* --- Course Info Section --- */
         .course-details {
             max-width: 1000px;
             margin: 0 auto 50px;
             background: var(--card-bg);
-            padding: 30px;
+            border: 1px solid var(--border-color);
             border-radius: 16px;
+            padding: 35px;
+            backdrop-filter: blur(12px);
+        }
+
+        .course-details h2 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .course-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .course-details li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .course-details li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+            top: -2px;
         }
 
         .two-columns {
@@ -76,151 +188,283 @@
             gap: 40px;
         }
 
-        .course-details h2 {
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .course-details ul {
-            list-style: none;
-        }
-
-        .course-details li {
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-        }
-
+        /* --- Search and Cards --- */
         .search-container {
             max-width: 600px;
             margin: 0 auto 30px;
+            width: 100%;
         }
 
         #searchBar {
             width: 100%;
-            padding: 15px;
+            padding: 16px 25px;
             border-radius: 50px;
-            border: none;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: white;
+            outline: none;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+
+        #searchBar:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
         }
 
         .container {
             max-width: 1200px;
-            margin: auto;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 20px;
+            width: 100%;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            color: inherit;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .card-title { font-weight: 600; }
-        .card-desc { color: var(--text-secondary); }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            background: rgba(30, 41, 59, 0.7);
+        }
 
+        .card-number {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-links {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .card-links a {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .card-links a:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN
+           ========================================== */
+        @media (max-width: 960px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+                transform: none;
+                margin: 0 auto 30px;
+                width: 100%;
+                max-width: 400px;
+                flex-wrap: wrap;
+                border-radius: 20px;
+            }
+            header h1 { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            header h1 { font-size: 2.2rem; letter-spacing: -1px; }
+            .course-details { padding: 25px 20px; }
+            .container { grid-template-columns: 1fr; gap: 15px; }
+            .sidebar a { width: 35px; height: 35px; font-size: 1rem; }
+            .author-box { padding: 20px; border-radius: 12px; }
+            .author-name { font-size: 1.2rem; }
+        }
     </style>
 </head>
-
 <body>
 
+<div class="sidebar">
+    <a href="https://github.com/thommaskevin" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/thommas-kevin-ab9810166/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://medium.com/@thommaskevin" target="_blank" title="Medium"><i class="fab fa-medium-m"></i></a>
+    <a href="https://www.youtube.com/channel/UC7uazGXaMIE6MNkHg4ll9oA" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://scholar.google.com/citations?user=MqWV8JIAAAAJ&hl=pt-PT&authuser=2" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+    <a href="http://lattes.cnpq.br/0630479458408181" target="_blank" title="Lattes CV"><i class="far fa-file-alt"></i></a>
+    <a href="https://conect2ai.dca.ufrn.br/" target="_blank" title="Conecta.ai"><i class="fas fa-network-wired"></i></a>
+</div>
+
 <header>
+    <span class="uni-tag">UFRN | CERES | DCT</span>
     <h1>Tópicos Avançados em Inteligência Artificial A</h1>
+    
     <div class="author-box">
-        <p>Prof. Dr. Thommas K. S. Flores</p>
-        <p>UFRN - CERES - DCT</p>
+        <div class="author-name">Prof. Dr. Thommas K. S. Flores</div>
+        <div class="author-info">
+            Universidade Federal do Rio Grande do Norte (UFRN)<br>
+            Centro de Ensino Superior do Seridó (CERES)<br>
+            Departamento de Computação e Tecnologia (DCT)
+        </div>
+        <a href="mailto:thommas.flores@ufrn.br" class="author-email">
+            <i class="far fa-envelope"></i> thommas.flores@ufrn.br
+        </a>
     </div>
 </header>
 
 <section class="course-details">
     <div class="two-columns">
-
         <div>
-            <h2>Objetivo Geral</h2>
+            <h2>Objetivos</h2>
+            
+            <h3>Objetivo Geral</h3>
             <ul>
                 <li>Capacitar os alunos a desenvolver e implantar sistemas modernos de IA, incluindo LLMs, RAG, agentes e Edge AI.</li>
             </ul>
 
-            <h2>Objetivos Específicos</h2>
+            <h3>Objetivos Específicos</h3>
             <ul>
-                <li>Utilizar GitHub e ambientes virtuais</li>
-                <li>Realizar análise de dados</li>
-                <li>Aplicar Feature Engineering</li>
-                <li>Compreender Machine Learning</li>
-                <li>Aplicar LLMs e fine-tuning</li>
-                <li>Desenvolver RAG</li>
-                <li>Construir agentes inteligentes</li>
-                <li>Aplicar MLOps</li>
-                <li>Desenvolver soluções Edge AI</li>
+                <li>Utilizar GitHub e ambientes virtuais.</li>
+                <li>Realizar análise de dados.</li>
+                <li>Aplicar Feature Engineering.</li>
+                <li>Compreender Machine Learning.</li>
+                <li>Aplicar LLMs e fine-tuning.</li>
+                <li>Desenvolver RAG.</li>
+                <li>Construir agentes inteligentes.</li>
+                <li>Aplicar MLOps.</li>
+                <li>Desenvolver soluções Edge AI.</li>
             </ul>
         </div>
-
+        
         <div>
             <h2>Conteúdo</h2>
             <ul>
-                <li>Data Science e Estatística</li>
-                <li>Feature Engineering</li>
-                <li>Machine Learning</li>
-                <li>LLMs</li>
-                <li>Fine-tuning</li>
-                <li>RAG</li>
-                <li>Agentes</li>
-                <li>MLOps</li>
-                <li>Edge AI</li>
+                <li>Data Science e Estatística.</li>
+                <li>Feature Engineering.</li>
+                <li>Machine Learning.</li>
+                <li>LLMs.</li>
+                <li>Fine-tuning.</li>
+                <li>RAG.</li>
+                <li>Agentes.</li>
+                <li>MLOps.</li>
+                <li>Edge AI.</li>
             </ul>
         </div>
-
     </div>
 </section>
 
 <div class="search-container">
-    <input type="text" id="searchBar" placeholder="Pesquisar aula..." onkeyup="filterCards()">
+    <input type="text" id="searchBar" placeholder="Pesquisar tópico da aula..." onkeyup="filterCards()">
 </div>
 
-<div class="container" id="cardContainer"></div>
+<div class="container" id="cardContainer">
+    </div>
 
 <script>
+    const aulas = [
+        { id:"Aula 01", name:"Introdução (17/03)", desc:"Visão geral, GitHub e ambientes virtuais.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 02", name:"Python e Dados (24/03)", desc:"Trabalhando com bibliotecas base: NumPy e Pandas.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 03", name:"Estatística (31/03)", desc:"Análise de distribuições e correlação de dados.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 04", name:"Análise Exploratória de Dados - EDA (07/04)", desc:"Técnicas e ferramentas para visualização de dados.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 05", name:"Pré-processamento (14/04)", desc:"Limpeza de dados, tratamento de nulos e encoding.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 06", name:"Feature Engineering (28/04)", desc:"Seleção de features, normalização e padronização.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 07", name:"Machine Learning (05/05)", desc:"Introdução aos conceitos e modelos de regressão.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 08", name:"Classificação (12/05)", desc:"Algoritmos supervisionados: KNN, SVM e árvores de decisão.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 09", name:"Avaliação de Modelos (19/05)", desc:"Métricas de desempenho e estratégias de validação.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 10", name:"Large Language Models - LLMs (26/05)", desc:"Arquitetura Transformers e geração de embeddings.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 11", name:"Prompt Engineering (02/06)", desc:"Técnicas avançadas para uso otimizado de LLMs.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 12", name:"Fine-tuning (09/06)", desc:"Adaptação e refinamento de modelos para tarefas específicas.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 13", name:"RAG - Teoria (16/06)", desc:"Conceitos de Retrieval-Augmented Generation e busca vetorial.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 14", name:"RAG - Prática (23/06)", desc:"Implementação de sistemas RAG passo a passo.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 15", name:"Agentes (30/06)", desc:"Desenvolvimento de sistemas inteligentes e agentes autônomos.", slideUrl:"#", videoUrl:"#"},
+        { id:"Aula 16", name:"MLOps e Edge AI (07/07)", desc:"Práticas de deploy, monitoramento e IA embarcada em IoT.", slideUrl:"#", videoUrl:"#"}
+    ];
 
-const aulas = [
-
-{ id:"Aula 01", name:"Introdução (17/03)", desc:"Visão geral, GitHub e ambientes virtuais", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 02", name:"Python e Dados (24/03)", desc:"NumPy e Pandas", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 03", name:"Estatística (31/03)", desc:"Distribuições e correlação", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 04", name:"EDA (07/04)", desc:"Visualização de dados", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 05", name:"Pré-processamento (14/04)", desc:"Limpeza e encoding", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 06", name:"Feature Engineering (28/04)", desc:"Seleção e normalização", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 07", name:"Machine Learning (05/05)", desc:"Introdução e regressão", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 08", name:"Classificação (12/05)", desc:"KNN, SVM e árvores", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 09", name:"Avaliação (19/05)", desc:"Métricas e validação", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 10", name:"LLMs (26/05)", desc:"Transformers e embeddings", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 11", name:"Prompt Engineering (02/06)", desc:"Uso de LLMs", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 12", name:"Fine-tuning (09/06)", desc:"Adaptação de modelos", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 13", name:"RAG (16/06)", desc:"Busca vetorial", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 14", name:"RAG Prático (23/06)", desc:"Implementação", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 15", name:"Agentes (30/06)", desc:"Sistemas inteligentes", slideUrl:"#", videoUrl:"#"},
-{ id:"Aula 16", name:"MLOps e Edge AI (07/07)", desc:"Deploy e IoT", slideUrl:"#", videoUrl:"#"}
-
-];
-
-function displayCards(data){
     const container = document.getElementById('cardContainer');
-    container.innerHTML="";
-    data.forEach(a=>{
-        container.innerHTML+=`
-        <div class="card">
-            <div class="card-title">${a.id} - ${a.name}</div>
-            <div class="card-desc">${a.desc}</div>
-        </div>`;
-    });
-}
 
-function filterCards(){
-    const q=document.getElementById('searchBar').value.toLowerCase();
-    displayCards(aulas.filter(a=>a.name.toLowerCase().includes(q)));
-}
+    function displayCards(data) {
+        container.innerHTML = "";
+        data.forEach(aula => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div>
+                    <div class="card-number">${aula.id}</div>
+                    <div class="card-title">${aula.name}</div>
+                    <div class="card-desc">${aula.desc}</div>
+                </div>
+                <div class="card-links">
+                    <a href="${aula.slideUrl}" target="_blank" title="Acessar Slides">
+                        <i class="far fa-file-pdf"></i> Slides
+                    </a>
+                    <a href="${aula.videoUrl}" target="_blank" title="Assistir Videoaula">
+                        <i class="fas fa-play-circle"></i> Vídeo
+                    </a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
 
-displayCards(aulas);
+    function filterCards() {
+        const query = document.getElementById('searchBar').value.toLowerCase();
+        const filtered = aulas.filter(a => 
+            a.name.toLowerCase().includes(query) || 
+            a.desc.toLowerCase().includes(query)
+        );
+        displayCards(filtered);
+    }
 
+    // Inicializa a exibição
+    displayCards(aulas);
 </script>
 
 </body>
