@@ -265,13 +265,20 @@
             flex-grow: 1;
         }
 
-        .card-links {
+        /* --- Estilos para os Botões e Select no Card --- */
+        .card-actions {
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 12px;
             margin-top: auto;
         }
 
-        .card-links a {
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-buttons a {
             flex: 1;
             text-align: center;
             padding: 10px;
@@ -289,20 +296,56 @@
             gap: 6px;
         }
 
-        .card-links a:hover {
+        .action-buttons a:hover {
             background: rgba(56, 189, 248, 0.15);
             border-color: var(--accent-color);
             color: var(--accent-color);
+        }
+
+        .pdf-select {
+            width: 100%;
+            padding: 10px 25px 10px 12px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            transition: 0.2s;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 14px;
+        }
+
+        .pdf-select:hover:not(:disabled) {
+            background-color: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .pdf-select:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-image: none;
+        }
+
+        .pdf-select option {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
         /* ==========================================
            RESPONSIVE DESIGN
            ========================================== */
         @media (max-width: 960px) {
-            .two-columns {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+            .two-columns { grid-template-columns: 1fr; gap: 20px; }
         }
 
         @media (max-width: 900px) {
@@ -328,6 +371,7 @@
             .sidebar a { width: 35px; height: 35px; font-size: 1rem; }
             .author-box { padding: 20px; border-radius: 12px; }
             .author-name { font-size: 1.2rem; }
+            .action-buttons { flex-direction: column; } /* Empilha os botões no celular */
         }
     </style>
 </head>
@@ -409,23 +453,24 @@
     </div>
 
 <script>
+    // Agora temos slideUrl e videoUrl fixos, e uma lista opcional "materiais"
     const aulas = [
-        { id:"Aula 01", name:"Introdução (17/03)", desc:"Visão geral, GitHub e ambientes virtuais.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 02", name:"Python e Dados (24/03)", desc:"Trabalhando com bibliotecas base: NumPy e Pandas.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 03", name:"Estatística (31/03)", desc:"Análise de distribuições e correlação de dados.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 04", name:"Análise Exploratória de Dados - EDA (07/04)", desc:"Técnicas e ferramentas para visualização de dados.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 05", name:"Pré-processamento (14/04)", desc:"Limpeza de dados, tratamento de nulos e encoding.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 06", name:"Feature Engineering (28/04)", desc:"Seleção de features, normalização e padronização.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 07", name:"Machine Learning (05/05)", desc:"Introdução aos conceitos e modelos de regressão.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 08", name:"Classificação (12/05)", desc:"Algoritmos supervisionados: KNN, SVM e árvores de decisão.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 09", name:"Avaliação de Modelos (19/05)", desc:"Métricas de desempenho e estratégias de validação.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 10", name:"Large Language Models - LLMs (26/05)", desc:"Arquitetura Transformers e geração de embeddings.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 11", name:"Prompt Engineering (02/06)", desc:"Técnicas avançadas para uso otimizado de LLMs.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 12", name:"Fine-tuning (09/06)", desc:"Adaptação e refinamento de modelos para tarefas específicas.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 13", name:"RAG - Teoria (16/06)", desc:"Conceitos de Retrieval-Augmented Generation e busca vetorial.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 14", name:"RAG - Prática (23/06)", desc:"Implementação de sistemas RAG passo a passo.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 15", name:"Agentes (30/06)", desc:"Desenvolvimento de sistemas inteligentes e agentes autônomos.", slideUrl:"#", videoUrl:"#"},
-        { id:"Aula 16", name:"MLOps e Edge AI (07/07)", desc:"Práticas de deploy, monitoramento e IA embarcada em IoT.", slideUrl:"#", videoUrl:"#"}
+        { id:"Aula 01", name:"Introdução (17/03)", desc:"Visão geral, GitHub e ambientes virtuais.", slideUrl:"#", videoUrl:"#", materiais: [{title: "Lista de Exercícios", url: "#"}]},
+        { id:"Aula 02", name:"Python e Dados (24/03)", desc:"Trabalhando com bibliotecas base: NumPy e Pandas.", slideUrl:"#", videoUrl:"#", materiais: [{title: "Notebook Colab", url: "#"}]},
+        { id:"Aula 03", name:"Estatística (31/03)", desc:"Análise de distribuições e correlação de dados.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 04", name:"Análise Exploratória de Dados (07/04)", desc:"Técnicas e ferramentas para visualização de dados.", slideUrl:"#", videoUrl:"#", materiais: [{title: "Artigo Base EDA", url: "#"}]},
+        { id:"Aula 05", name:"Pré-processamento (14/04)", desc:"Limpeza de dados, tratamento de nulos e encoding.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 06", name:"Feature Engineering (28/04)", desc:"Seleção de features, normalização e padronização.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 07", name:"Machine Learning (05/05)", desc:"Introdução aos conceitos e modelos de regressão.", slideUrl:"#", videoUrl:"#", materiais: [{title: "Cheatsheet de Algoritmos", url: "#"}]},
+        { id:"Aula 08", name:"Classificação (12/05)", desc:"Algoritmos supervisionados: KNN, SVM e árvores de decisão.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 09", name:"Avaliação de Modelos (19/05)", desc:"Métricas de desempenho e estratégias de validação.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 10", name:"Large Language Models (26/05)", desc:"Arquitetura Transformers e geração de embeddings.", slideUrl:"#", videoUrl:"#", materiais: [{title: "Paper: Attention Is All You Need", url: "https://arxiv.org/pdf/1706.03762"}]},
+        { id:"Aula 11", name:"Prompt Engineering (02/06)", desc:"Técnicas avançadas para uso otimizado de LLMs.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 12", name:"Fine-tuning (09/06)", desc:"Adaptação e refinamento de modelos para tarefas específicas.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 13", name:"RAG - Teoria (16/06)", desc:"Conceitos de Retrieval-Augmented Generation e vetores.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 14", name:"RAG - Prática (23/06)", desc:"Implementação de sistemas RAG passo a passo.", slideUrl:"#", videoUrl:"#", materiais: [{title: "Repositório do Projeto", url: "#"}]},
+        { id:"Aula 15", name:"Agentes (30/06)", desc:"Desenvolvimento de sistemas inteligentes autônomos.", slideUrl:"#", videoUrl:"#", materiais: []},
+        { id:"Aula 16", name:"MLOps e Edge AI (07/07)", desc:"Práticas de deploy, monitoramento e IA embarcada em IoT.", slideUrl:"#", videoUrl:"#", materiais: []}
     ];
 
     const container = document.getElementById('cardContainer');
@@ -433,6 +478,20 @@
     function displayCards(data) {
         container.innerHTML = "";
         data.forEach(aula => {
+            
+            // Verifica se a aula tem material complementar
+            let selectElement = '';
+            if (aula.materiais && aula.materiais.length > 0) {
+                let options = `<option value="" disabled selected>📚 Material Complementar</option>`;
+                aula.materiais.forEach(mat => {
+                    options += `<option value="${mat.url}">${mat.title}</option>`;
+                });
+                selectElement = `<select class="pdf-select" onchange="if(this.value) { window.open(this.value, '_blank'); this.selectedIndex=0; }">${options}</select>`;
+            } else {
+                // Desabilita o Select se não houver material para manter a consistência do design
+                selectElement = `<select class="pdf-select" disabled><option>Nenhum material extra</option></select>`;
+            }
+
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
@@ -441,13 +500,18 @@
                     <div class="card-title">${aula.name}</div>
                     <div class="card-desc">${aula.desc}</div>
                 </div>
-                <div class="card-links">
-                    <a href="${aula.slideUrl}" target="_blank" title="Acessar Slides">
-                        <i class="far fa-file-pdf"></i> Slides
-                    </a>
-                    <a href="${aula.videoUrl}" target="_blank" title="Assistir Videoaula">
-                        <i class="fas fa-play-circle"></i> Vídeo
-                    </a>
+                
+                <div class="card-actions">
+                    ${selectElement}
+                    
+                    <div class="action-buttons">
+                        <a href="${aula.slideUrl}" target="_blank" title="Acessar Slides">
+                            <i class="far fa-file-pdf"></i> Slides
+                        </a>
+                        <a href="${aula.videoUrl}" target="_blank" title="Assistir Videoaula">
+                            <i class="fas fa-play-circle"></i> Vídeo
+                        </a>
+                    </div>
                 </div>
             `;
             container.appendChild(card);
