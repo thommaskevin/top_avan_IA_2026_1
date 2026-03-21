@@ -7,7 +7,6 @@ This repository contains educational materials for the **Advanced Topics in Arti
 The repository provides structured access to lecture slides, video lessons, and complementary materials aimed at supporting undergraduate students in developing modern Artificial Intelligence (AI) systems, with emphasis on Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), intelligent agents, MLOps, and Edge AI.
 
 
-
 ## Instructor
 
 **Prof. Dr. Thommas K. S. Flores**  
@@ -44,8 +43,6 @@ Department of Computing and Technology (DCT)
 - To design and implement intelligent agents.
 - To apply MLOps practices for deployment and monitoring.
 - To develop AI solutions for Edge and embedded systems.
-
----
 
 ## Course Content
 
