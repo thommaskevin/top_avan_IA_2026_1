@@ -6,7 +6,7 @@ This repository contains educational materials for the **Advanced Topics in Arti
 
 The repository provides structured access to lecture slides, video lessons, and complementary materials aimed at supporting undergraduate students in developing modern Artificial Intelligence (AI) systems, with emphasis on Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), intelligent agents, MLOps, and Edge AI.
 
----
+
 
 ## Instructor
 
@@ -17,7 +17,15 @@ Department of Computing and Technology (DCT)
 
 📧 Email: [thommas.flores@ufrn.br](mailto:thommas.flores@ufrn.br)
 
----
+* GitHub: [https://github.com/thommaskevin](https://github.com/thommaskevin)
+* LinkedIn: [https://www.linkedin.com/in/thommas-kevin-ab9810166/](https://www.linkedin.com/in/thommas-kevin-ab9810166/)
+* Medium: [https://medium.com/@thommaskevin](https://medium.com/@thommaskevin)
+* YouTube: [https://www.youtube.com/channel/UC7uazGXaMIE6MNkHg4ll9oA](https://www.youtube.com/channel/UC7uazGXaMIE6MNkHg4ll9oA)
+* Google Scholar: [https://scholar.google.com/citations?user=MqWV8JIAAAAJ](https://scholar.google.com/citations?user=MqWV8JIAAAAJ)
+* Lattes CV: [http://lattes.cnpq.br/0630479458408181](http://lattes.cnpq.br/0630479458408181)
+* Conecta.ai: [https://conect2ai.dca.ufrn.br/](https://conect2ai.dca.ufrn.br/)
+
+
 
 ## Course Objectives
 
@@ -53,7 +61,7 @@ The course covers the following topics:
 8. MLOps (deployment, monitoring, and lifecycle management)  
 9. Edge AI and embedded intelligence  
 
----
+
 
 ## Repository Structure
 
@@ -70,7 +78,6 @@ Each lecture provides:
 - Learning resources  
 - Additional supporting materials (when available)  
 
----
 
 ## How to Use
 
@@ -90,25 +97,13 @@ Each lecture provides:
    * Click **Video** to watch lecture recordings
    * Use the **Material Complementar** dropdown for additional resources
 
----
 
-## External Links
-
-* GitHub: [https://github.com/thommaskevin](https://github.com/thommaskevin)
-* LinkedIn: [https://www.linkedin.com/in/thommas-kevin-ab9810166/](https://www.linkedin.com/in/thommas-kevin-ab9810166/)
-* Medium: [https://medium.com/@thommaskevin](https://medium.com/@thommaskevin)
-* YouTube: [https://www.youtube.com/channel/UC7uazGXaMIE6MNkHg4ll9oA](https://www.youtube.com/channel/UC7uazGXaMIE6MNkHg4ll9oA)
-* Google Scholar: [https://scholar.google.com/citations?user=MqWV8JIAAAAJ](https://scholar.google.com/citations?user=MqWV8JIAAAAJ)
-* Lattes CV: [http://lattes.cnpq.br/0630479458408181](http://lattes.cnpq.br/0630479458408181)
-* Conecta.ai: [https://conect2ai.dca.ufrn.br/](https://conect2ai.dca.ufrn.br/)
-
----
 
 ## License
 
 This repository is intended for educational purposes only. For reuse, distribution, or modification, please contact the instructor.
 
----
+
 
 ## Acknowledgments
 
