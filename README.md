@@ -76,7 +76,7 @@ Each lecture provides:
 
 1. Clone this repository:
 
-   ```bash
+```bash
    git clone https://github.com/thommaskevin/advanced_ai_2026_1.git
 ````
 
